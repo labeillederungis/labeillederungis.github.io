@@ -1,14 +1,26 @@
 #!/usr/bin/env ruby
 
-compile '/index.html' do
-  layout '/default.*'
-  write '/index.html'
+compile '/index.adoc' do
+  filter  :asciidoctor
+  layout  '/default.*'
+  write   '/index.html'
 end
 
-compile '/**/*.html' do
-  layout '/default.*'
-  write item.identifier.without_ext + '/index.html'
+compile '/**/*.adoc' do
+  filter  :asciidoctor
+  layout  '/default.*'
+  write   item.identifier.without_ext + '/index.html'
 end
+
+# compile '/index.html' do
+#   layout '/default.*'
+#   write '/index.html'
+# end
+
+# compile '/**/*.html' do
+#   layout '/default.*'
+#   write item.identifier.without_ext + '/index.html'
+# end
 
 # This is an example rule that matches Markdown (.md) files, and filters them
 # using the :kramdown filter. It is commented out by default, because kramdown
